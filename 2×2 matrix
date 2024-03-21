@@ -1,0 +1,78 @@
+#include <stdio.h>
+
+// Function to add two matrices
+void addMatrices(int mat1[2][2], int mat2[2][2], int result[2][2]) {
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            result[i][j] = mat1[i][j] + mat2[i][j];
+        }
+    }
+}
+
+// Function to subtract two matrices
+void subtractMatrices(int mat1[2][2], int mat2[2][2], int result[2][2]) {
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            result[i][j] = mat1[i][j] - mat2[i][j];
+        }
+    }
+}
+
+// Function to multiply two matrices
+void multiplyMatrices(int mat1[2][2], int mat2[2][2], int result[2][2]) {
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            result[i][j] = 0;
+            for (int k = 0; k < 2; k++) {
+                result[i][j] += mat1[i][k] * mat2[k][j];
+            }
+        }
+    }
+}
+
+// Function to find the determinant of a 2x2 matrix
+int determinant(int mat[2][2]) {
+    return mat[0][0] * mat[1][1] - mat[0][1] * mat[1][0];
+}
+
+int main() {
+    int mat1[2][2] = {{1, 2}, {3, 4}};
+    int mat2[2][2] = {{5, 6}, {7, 8}};
+    int result[2][2];
+    
+    // Addition
+    addMatrices(mat1, mat2, result);
+    printf("Addition Result:\n");
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            printf("%d ", result[i][j]);
+        }
+        printf("\n");
+    }
+    
+    // Subtraction
+    subtractMatrices(mat1, mat2, result);
+    printf("\nSubtraction Result:\n");
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            printf("%d ", result[i][j]);
+        }
+        printf("\n");
+    }
+    
+    // Multiplication
+    multiplyMatrices(mat1, mat2, result);
+    printf("\nMultiplication Result:\n");
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            printf("%d ", result[i][j]);
+        }
+        printf("\n");
+    }
+    
+    // Determinant
+    int det = determinant(mat1);
+    printf("\nDeterminant of mat1: %d\n", det);
+    
+    return 0;
+}
