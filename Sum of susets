@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+// Function to find sum of elements in an array
+int arraySum(int arr[], int n) {
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += arr[i];
+    }
+    return sum;
+}
+
+// Function to find all subsets and their sums
+void findSubsets(int arr[], int subset[], int n, int subsetSize, int totalSum, int subIndex) {
+    if (arraySum(subset, subsetSize) == totalSum) {
+        printf("{ ");
+        for (int i = 0; i < subsetSize; i++) {
+            printf("%d ", subset[i]);
+        }
+        printf("}\n");
+    }
+    if (subIndex == n) {
+        return;
+    }
+    subset[subsetSize] = arr[subIndex];
+    findSubsets(arr, subset, n, subsetSize + 1, totalSum, subIndex + 1);
+    findSubsets(arr, subset, n, subsetSize, totalSum, subIndex + 1);
+}
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int subset[n];
+
+    int totalSum = 6; // Change this to your desired sum
+
+    printf("Subsets with sum %d:\n", totalSum);
+    findSubsets(arr, subset, n, 0, totalSum, 0);
+
+    return 0;
+}
